@@ -1,0 +1,26 @@
+{
+  "name": "progessive-app",
+  "version": "0.0.1",
+  "description": "Progessive app using service workers",
+  "author": {
+    "name": "Raul Macarie",
+    "email": "raul.macarie@gmail.com",
+    "url": "https://...."
+  },
+  "homepage": "https://....",
+  "keywords": [
+    "caching",
+    "offline",
+    "precaching",
+    "service-worker",
+    "serviceworker"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "license": "MIT"
+}
