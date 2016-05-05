@@ -8,7 +8,7 @@ import fs from 'fs';
 
 const app = koa();
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || 'localhost';
+const host = process.env.HOST || '0.0.0.0';
 
 try {
   // Query the entry
