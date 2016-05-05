@@ -4,12 +4,24 @@ import { RouterContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
 import React from 'react';
 import routes from '../app/routes';
+import fs from 'fs';
 
 const app = koa();
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 
-app.use(serve('./dist'))
+try {
+  // Query the entry
+  const stats = fs.lstatSync('./dist');
+
+  // Is it a directory?
+  if (stats.isDirectory()) {
+    app.use(serve('./dist'));
+  }
+} catch (e) {
+  // ...
+}
+
 
 app.use(function *() {
   match({ routes, location: this.req.url }, (error, redirectLocation, renderProps) => {
