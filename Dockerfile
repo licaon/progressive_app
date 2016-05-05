@@ -1,0 +1,2 @@
+FROM nodejs
+npm install
