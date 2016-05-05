@@ -1,3 +1,4 @@
 FROM licaon/nodejs:6.0
 COPY . /app/
-RUN ["npm", "install"]
+RUN cd /app && npm install
+CMD node ./app/server/index.js
