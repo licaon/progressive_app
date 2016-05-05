@@ -1,2 +1,2 @@
 FROM licaon/nodejs:6.0
-npm install
+RUN ["npm", "install"]
