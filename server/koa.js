@@ -1,4 +1,5 @@
 import koa from 'koa';
+import koaRouter from 'koa-router';
 import serve from 'koa-static-folder';
 import { RouterContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
@@ -7,6 +8,7 @@ import routes from '../app/routes';
 import fs from 'fs';
 
 const app = koa();
+const router = koaRouter();
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || '0.0.0.0';
 
@@ -22,6 +24,14 @@ try {
   // ...
 }
 
+router
+  .get('/api/photos',
+  function *(next) {
+    this.body = 'Hello world!';
+  });
+
+app
+  .use(router.routes());
 
 app.use(function *() {
   match({ routes, location: this.req.url }, (error, redirectLocation, renderProps) => {
