@@ -12,6 +12,9 @@ const router = koaRouter();
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || '0.0.0.0';
 
+const photos = JSON.parse(fs.readFileSync('server/dummy/photos.json', 'utf8'));
+const comments = JSON.parse(fs.readFileSync('server/dummy/comments.json', 'utf8'));
+
 try {
   // Query the entry
   const stats = fs.lstatSync('./dist');
@@ -27,7 +30,10 @@ try {
 router
   .get('/api/photos',
   function *(next) {
-    this.body = 'Hello world!';
+    this.body = photos;
+  })
+  .get('/api/comments', function *(next) {
+    this.body = comments;
   });
 
 app
