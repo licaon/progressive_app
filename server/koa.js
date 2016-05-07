@@ -9,8 +9,8 @@ import fs from 'fs';
 
 const app = koa();
 const router = koaRouter();
-const port = process.env.PORT || 3000;
-const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || (process.env.NODE_ENV === 'development' ? 3030 : 8080);
+const host = process.env.HOST || (process.env.NODE_ENV === 'development' ? 'localhost' : '0.0.0.0');
 
 const photos = JSON.parse(fs.readFileSync('server/dummy/photos.json', 'utf8'));
 const comments = JSON.parse(fs.readFileSync('server/dummy/comments.json', 'utf8'));
@@ -39,9 +39,11 @@ router
 app
   .use(router.routes());
 
-app.use(function *() {
-  match({ routes, location: this.req.url }, (error, redirectLocation, renderProps) => {
-    this.response.body = `
+// Start as an universal app
+if (process.env.type === 'universal') {
+  app.use(function *() {
+    match({ routes, location: this.req.url }, (error, redirectLocation, renderProps) => {
+      this.response.body = `
       <html>
         <head>
           <title>Example Koa + React-Router App</title>
@@ -50,8 +52,9 @@ app.use(function *() {
           <div id="root">${renderToString(<RouterContext {...renderProps} />)}</div>
         </body>
       </html>`;
+    });
   });
-});
+}
 
 app.listen(port, host, () => {
   console.log(`Koa is listening on ${host}:${port}`);
