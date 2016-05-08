@@ -17,14 +17,29 @@
   ],
   "scripts": {
     "lint": "eslint server --ext .jsx,.js",
-    "dev": "better-npm-run dev"
+    "dev:universal": "better-npm-run dev:universal",
+    "dev:api": "better-npm-run dev:api",
+    "dev:ui": "better-npm-run dev:ui"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "betterScripts": {
-    "dev": {
+    "dev:universal": {
       "command": "nodemon --debug ./server/index.js",
+      "env": {
+        "NODE_ENV": "development",
+        "TYPE": "universal"
+      }
+    },
+    "dev:api": {
+      "command": "nodemon --debug ./server/index.js",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "dev:ui": {
+      "command": "webpack-dev-server --config ./webpack/dev.conf.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -34,6 +49,7 @@
     "babel": "^6.5.2",
     "babel-core": "^6.7.7",
     "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-react-display-name": "^6.5.0",
     "babel-plugin-transform-runtime": "^6.7.5",
@@ -47,7 +63,11 @@
     "eslint-plugin-import": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^1.0.3",
     "eslint-plugin-react": "^5.0.1",
-    "nodemon": "^1.9.2"
+    "html-webpack-plugin": "^2.16.1",
+    "nodemon": "^1.9.2",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "history": "^2.1.1",
@@ -56,7 +76,8 @@
     "koa-static-folder": "^0.1.6",
     "react": "^15.0.1",
     "react-dom": "^15.0.2",
-    "react-router": "^2.3.0"
+    "react-router": "^2.3.0",
+    "sw-toolbox": "^3.1.1"
   },
   "license": "MIT"
 }

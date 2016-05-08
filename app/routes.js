@@ -7,7 +7,7 @@ import About from './components/About';
 import NotFound from './components/NotFound';
 import React from 'react';
 
-module.exports = (
+const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="photos" component={Photos} />
@@ -16,3 +16,5 @@ module.exports = (
     <Route path="*" component={NotFound} />
   </Route>
 );
+
+export default routes;
