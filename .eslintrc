@@ -11,6 +11,7 @@
     "mocha": true
   },
   "rules": {
+    // This rule enforces consistent use of trailing commas in object and array literals.
     "comma-dangle": 0
   }
 }
