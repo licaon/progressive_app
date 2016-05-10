@@ -29,10 +29,10 @@ try {
 
 router
   .get('/api/photos',
-  function *(next) {
+  function *() {
     this.body = photos;
   })
-  .get('/api/comments', function *(next) {
+  .get('/api/comments', function *() {
     this.body = comments;
   });
 
